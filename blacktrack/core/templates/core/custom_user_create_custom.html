@@ -1,0 +1,31 @@
+{% extends "base_generic.html" %}
+
+<!--Override "title" block in base_generic.html-->
+{% block title %}
+<title>Blacktrack App - User Registration</title>
+{% endblock %}
+
+{% block descriptor %}
+<h1 class="bottom-only-solid-border">Blacktrack - User Registration</h1>
+{% endblock %}
+
+{% block content %}
+
+  <form action="" method="post">
+    {% csrf_token %}
+    <table>
+    {{ custom_user_form.as_table }}
+    </table>
+    <br>
+    <p>Do you want to join an existing group?</p>
+      <li class="text-muted">You don't have to, you'll have your own group no matter what you decide.</li>
+      <ul class="text-muted">You don't have to, you'll have your own group no matter what you decide.</ul>
+    <br>
+    <p>Do you have a user registration code?</p>
+    <strong>Registration codes are required at this stage of the alpha.</strong>
+    {{ user_registration_code_form.as_p }}
+    <br>
+    <input type="submit" value="Submit">
+  </form>
+
+{% endblock %}

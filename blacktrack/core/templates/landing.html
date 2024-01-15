@@ -1,0 +1,214 @@
+{% extends "base_generic.html" %}
+
+<!--Override "title" block in base_generic.html-->
+{% block title %}
+<title>Blacktrack App - Landing</title>
+{% endblock %}
+
+{% block descriptor %}
+<h1 class="bottom-only-solid-border">Blacktrack - Landing</h1>
+{% endblock %}
+
+{% block content %}
+
+  <br>
+  <p>Dev buttons</p>
+  <a href ="{% url 'warmup' %}" class="btn btn-danger toggle-push-away-from-buttons" target="_blank"> Warmup Environment </a>
+  <br>
+
+  <br>
+  <div class="card-header">
+    <strong>My</strong> stuff
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="card">
+          <div class="card-body">
+            <h5 href="" class="card-title">My containers - {{ number_of_container_object_instance|default_if_none:"Nothing, yet." }}</h5>
+            <a href="{% url 'list-containers' %}" class="btn btn-primary">See my container</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-sm-6">
+        <div class="card">
+          <div class="card-body">
+            <h5 href="" class="card-title">My items - {{ number_of_item_object_instance|default_if_none:"Nothing, yet." }}</h5>
+            <a href="{% url 'list-items' %}" class="btn btn-primary">See my items</a>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+  <br>
+    
+  <div class="card-header">
+    <strong>Add</strong> new stuff
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="card">
+          <div class="card-body">
+            <a href="" class="btn btn-primary">Add new <strong>item</strong></a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-sm-6">
+        <div class="card">
+          <div class="card-body">
+            <a href="" class="btn btn-primary">Add new <strong>container</strong></a>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+  <br>
+  
+  <div class="card-header">
+    <strong>Control</strong> your stuff
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="card">
+          <div class="card-body">
+            <a href="" class="btn btn-primary">Add new <strong>container object</strong></a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-sm-6">
+        <div class="card">
+          <div class="card-body">
+            <a href="" class="btn btn-primary">Add new <strong>item object</strong></a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-sm-6">
+        <div class="card">
+          <div class="card-body">
+            <a href="{% url 'site-create' %}" class="btn btn-primary">Add new <strong>site</strong></a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-sm-6">
+        <div class="card">
+          <div class="card-body">
+            <a href="" class="btn btn-primary">Add new <strong>acquisition location / source</strong></a>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+  <br>
+
+    <div class="card-header">
+    <em><strong>Full View</strong></em>
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="card">
+          <div class="card-body">
+            <a href="" class="btn btn-primary">See all <strong>Manufacturers</strong></a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-sm-6">
+        <div class="card">
+          <div class="card-body">
+            <a href="" class="btn btn-primary">See all <strong>Container types</strong></a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-sm-6">
+        <div class="card">
+          <div class="card-body">
+            <a href="" class="btn btn-primary">See all <strong>Item types</strong></a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-sm-6">
+        <div class="card">
+          <div class="card-body">
+            <a href="" class="btn btn-primary">See all <strong>acquisition locations / sources</strong></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <div class="card">
+          <div class="card-body">
+            <a href="{% url 'list-sites' %}" class="btn btn-primary">See all <strong>sites</strong></a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-sm-6">
+        <div class="card">
+          <div class="card-body">
+            <a href="{% url 'list-addresses' %}" class="btn btn-primary">See all <strong>addresses</strong></a>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+  <br>
+  
+    <div class="card-header">
+    <em><strong>Full control</strong></em>
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="card">
+          <div class="card-body">
+            <a href="" class="btn btn-primary">Add new <strong>Manufacturer</strong></a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-sm-6">
+        <div class="card">
+          <div class="card-body">
+            <a href="" class="btn btn-primary">Add new <strong>Container type</strong></a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-sm-6">
+        <div class="card">
+          <div class="card-body">
+            <a href="" class="btn btn-primary">Add new <strong>Item type</strong></a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-sm-6">
+        <div class="card">
+          <div class="card-body">
+            <a href="" class="btn btn-primary">Add new <strong>acquisition location / source</strong></a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-sm-6">
+        <div class="card">
+          <div class="card-body">
+            <a href="{% url 'address-create' %}" class="btn btn-primary">Add new <strong>address</strong></a>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+
+
+{% endblock %}

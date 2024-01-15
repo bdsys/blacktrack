@@ -1,0 +1,53 @@
+{% extends "base_generic.html" %}
+
+<!--Override "title" block in base_generic.html-->
+{% block title %}
+<title>Blacktrack App - My Sites</title>
+{% endblock %}
+
+{% block descriptor %}
+<h1 class="bottom-only-solid-border">Blacktrack - My Sites</h1>
+{% endblock %}
+
+{% block content %}
+
+  <br>
+  <h2>My Sites</h2>
+  <br>
+  <p>total sites: {{ site_type_list.count|default_if_none:0 }}</p>
+  
+  <br>
+  {% if perms.core.can_create_site %}
+    <a href="{% url 'site-create'%}" class="btn btn-primary">Create new site</a>
+    <br>
+    <br>
+  {% endif %}
+
+  
+  <div class="row">
+    {% for site in site_type_list %}
+      
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 href="" class="card-title">{{ site.name }}</h5>
+          {% if site.site_address %}
+              <p class="card-text text-muted">Address name: {{ site.site_address.name }}</p>
+          {% else %}
+              {% if perms.core.can_update_site %}
+                <a href="{% url 'site-update' site.id %}" class="btn btn-primary btn-float-above-buttons">Add address to site</a>
+              {% endif %}
+              <br>
+          {% endif %}
+          <a href="{{ site.get_absolute_url }}" class="btn btn-primary">See site details</a>
+          {% if perms.core.can_update_site %}<a href="{% url 'site-update' site.id %}" class="btn btn-info">Update site</a>{% endif %}
+          {% if perms.core.can_delete_site %}<a href="{% url 'site-delete' site.id %}" class="btn btn-danger">Delete site</a>{% endif %}
+        </div>
+      </div>
+    </div>
+    
+  {% endfor %}
+  </div>
+
+
+{% endblock %}

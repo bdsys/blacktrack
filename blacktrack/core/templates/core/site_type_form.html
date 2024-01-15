@@ -1,0 +1,22 @@
+{% extends "base_generic.html" %}
+
+<!--Override "title" block in base_generic.html-->
+{% block title %}
+<title>Blacktrack App - Edit Site</title>
+{% endblock %}
+
+{% block descriptor %}
+<h1 class="bottom-only-solid-border">Blacktrack - Edit Site</h1>
+{% endblock %}
+
+{% block content %}
+
+  <form action="" method="post">
+    {% csrf_token %}
+    <table>
+    {{ form.as_table }}
+    </table>
+    <input type="submit" value="Submit">
+  </form>
+
+{% endblock %}

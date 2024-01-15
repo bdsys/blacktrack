@@ -1,0 +1,41 @@
+{% extends "base_generic.html" %}
+
+<!--Override "title" block in base_generic.html-->
+{% block title %}
+<title>Blacktrack App - My Containers</title>
+{% endblock %}
+
+{% block descriptor %}
+<h1 class="bottom-only-solid-border">Blacktrack - My Containers</h1>
+{% endblock %}
+
+{% block content %}
+
+  <br>
+  <h2>My containers:</h2>
+  <br>
+  <p>total containers: {{ number_of_container_object_instance }}</p>
+  <br>
+  
+  <div class="row">
+    {% for container in listOfContainersAndItemCount %}
+      
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{ container.0 }}</h5>
+          <p class="card-text text-muted">items in container: {{ container.1 }}</p>
+          <a href="{{ container.3 }}" class="btn btn-primary">See items in container</a>
+          <a href="{{ container.2 }}" class="btn btn-primary">See container details</a>
+           {% if perms.core.can_delete_container_object_instance %}
+            <a href="" class="btn btn-danger">Delete container</a>
+           {% endif %}
+        </div>
+      </div>
+    </div>
+    
+  {% endfor %}
+  </div>
+
+
+{% endblock %}

@@ -1,0 +1,126 @@
+{% extends "base_generic.html" %}
+
+<!--Override "title" block in base_generic.html-->
+{% block title %}
+<title>Blacktrack App - Item Details</title>
+{% endblock %}
+
+{% block descriptor %}
+<h1 class="bottom-only-solid-border">Blacktrack - Item Details</h1>
+{% endblock %}
+
+{% block content %}
+
+<br>
+<a href="{% url 'list-items' %}" class="btn btn-primary">See my items</a>
+<br>
+
+<br>
+<div class="row">
+  <div class="col-sm-9 detail-major-background">
+  <h3><a href="{{ item_object_instance.container_instance.get_absolute_url }}">{{ item_object_instance.container_instance.container_object_instance_nickname }}</a></h3>
+ <div class="row">
+      <div class="col-8 col-sm-6 detail-minor-background">
+        Item:
+      </div>
+      <div class="col-4 col-sm-6 detail-minor-background">
+        {{ item_object_instance.item_object_instance_nickname }}
+      </div>
+    </div>
+    
+
+    {% if item_object_instance.item_object_instance.item_type %}
+        <div class="row">
+          <div class="col-8 col-sm-6 detail-minor-background">
+            Item type:
+          </div>
+          <div class="col-4 col-sm-6 detail-minor-background">
+            {{ item_object_instance.item_object_instance.item_type }}
+          </div>
+        </div>
+   {% endif %}
+   
+    {% if item_object_instance.item_object_instance.manufacturer %}
+        <div class="row">
+          <div class="col-8 col-sm-6 detail-minor-background">
+            Manufacturer:
+          </div>
+          <div class="col-4 col-sm-6 detail-minor-background">
+            {{ item_object_instance.item_object_instance.manufacturer }}
+          </div>
+        </div>
+   {% endif %}
+   
+    {% if item_object_instance.source.name %}
+        <div class="row">
+          <div class="col-8 col-sm-6 detail-minor-background">
+            Bought from:
+          </div>
+          <div class="col-4 col-sm-6 detail-minor-background">
+            {{ item_object_instance.source.name }} {% if item_object_instance.item_acquisition_date %} ( {{ item_object_instance.item_acquisition_date }} ){% endif %}
+          </div>
+        </div>
+   {% endif %}
+   
+    <div class="row">
+      <div class="col-8 col-sm-6 detail-minor-background">
+        Number of packages:
+      </div>
+      <div class="col-4 col-sm-6 detail-minor-background">
+        {{ item_object_instance.package_count }}
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-8 col-sm-6 detail-minor-background">
+        Number in package:
+      </div>
+      <div class="col-4 col-sm-6 detail-minor-background">
+        <p>{{ item_object_instance.number_in_package_count }} ( {% widthratio item_object_instance.package_count 1 item_object_instance.number_in_package_count %} total )</p>
+      </div>
+    </div>
+    
+    {% if item_object_instance.item_deep_storage %}
+    <div class="row">
+      <div class="col-8 col-sm-6 detail-minor-background">
+        Item is in deep storage
+      </div>
+      <div class="col-4 col-sm-6 detail-minor-background">
+        <p>Deep storage in {{ ContainerObjectInstance.container_object_instance_nickname }}</p>
+      </div>
+    </div>
+    {% endif %}
+     
+       <div class="row">
+          <div class="col-8 col-sm-6 detail-minor-background">
+            {% if item_object_instance.item_expiration_date %}
+              {% if item_object_instance.days_until_item_expiration > 30 %}
+                <strong><p class="text-success">Good for {{ item_object_instance.days_until_item_expiration }} days</p></strong>
+              
+              {% elif item_object_instance.days_until_item_expiration <= 30 and item_object_instance.days_until_item_expiration >= 0 %}
+                <strong><p class="text-warning">Expires in {{ item_object_instance.days_until_item_expiration }} days</p></strong>
+                
+              {% else %}
+                <strong><p class="text-danger">Expired  {% widthratio item_object_instance.days_until_item_expiration 1 -1 %} days ago!</p></strong>
+              {% endif %}   
+              
+            {% else %}
+              No expiration date registered for this item
+            {% endif %}
+          </div>
+          <div class="col-4 col-sm-6 detail-minor-background">
+           {% if item_object_instance.item_expiration_date %}
+            
+              Expiration date:  {{ item_object_instance.item_expiration_date }}
+              
+            {% else %}
+            
+            No expiration date
+        
+            {% endif %}
+          </div>
+        </div>
+  </div>
+</div>
+
+{% endblock %}

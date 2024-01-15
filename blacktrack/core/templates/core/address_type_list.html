@@ -1,0 +1,45 @@
+{% extends "base_generic.html" %}
+
+<!--Override "title" block in base_generic.html-->
+{% block title %}
+<title>Blacktrack App - My Addresses</title>
+{% endblock %}
+
+{% block descriptor %}
+<h1 class="bottom-only-solid-border">Blacktrack - My Addresses</h1>
+{% endblock %}
+
+{% block content %}
+
+  <br>
+  <h2>My addresses</h2>
+  <br>
+  <p>total addresses: {{ address_type_list.count|default_if_none:0 }}</p>
+  
+  <br>
+  {% if perms.core.can_create_address %} 
+    <a href="{% url 'address-create'%}" class="btn btn-primary">Create new address</a>  
+    <br>
+    <br>
+  {% endif %}
+  
+  <div class="row">
+    {% for address in address_type_list %}
+      
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 href="" class="card-title">{{ address.name }}</h5>
+          <p class="card-text text-muted">Has location data: {{ address.contains_location_data }}</p>
+          <a href="{{ address.get_absolute_url }}" class="btn btn-primary">See address details</a>
+          {% if perms.core.can_update_address %}<a href="{% url 'address-update' address.id %}" class="btn btn-info">Update address</a>{% endif %}
+          {% if perms.core.can_delete_address %}<a href="{% url 'address-delete' address.id %}" class="btn btn-danger">Delete address</a>{% endif %}
+        </div>
+      </div>
+    </div>
+    
+  {% endfor %}
+  </div>
+
+
+{% endblock %}

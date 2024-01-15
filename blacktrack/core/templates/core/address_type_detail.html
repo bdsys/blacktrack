@@ -1,0 +1,107 @@
+{% extends "base_generic.html" %}
+
+<!--Override "title" block in base_generic.html-->
+{% block title %}
+<title>Blacktrack App - Address Details</title>
+{% endblock %}
+
+{% block descriptor %}
+<h1 class="bottom-only-solid-border">Blacktrack - Address Details</h1>
+{% endblock %}
+
+{% block content %}
+
+<br>
+<a href="{% url 'list-addresses' %}" class="btn btn-primary">See my addresses</a>
+{% if perms.core.can_update_address %}- <a href="{% url 'address-update' address_type.id %}" class="btn btn-primary">Update this address</a>  {% endif %}
+{% if perms.core.can_delete_address %}- <a href="{% url 'address-delete' address_type.id %}" class="btn btn-primary">Delete this address</a>  {% endif %}
+<br>
+
+<br>
+<div class="row">
+  <div class="col-sm-9 detail-major-background">
+  <h3>{{ address_type.name }}</h3>
+  
+   <br>
+   <div class="row">
+      <div class="col-8 col-sm-6 detail-minor-background">
+        Location information:
+      </div>
+    </div>
+    <br>
+    
+  {% if address_type.contains_location_data == True %}  
+    {% if address_type.location_city %}
+       <div class="row">
+          <div class="col-8 col-sm-6 detail-minor-background">
+            City:
+          </div>
+          <div class="col-4 col-sm-6 detail-minor-background">
+            {{ address_type.location_city }}
+          </div>
+        </div>
+   {% endif %}
+
+    {% if address_type.location_locality %}
+       <div class="row">
+          <div class="col-8 col-sm-6 detail-minor-background">
+            Locality (State / Province):
+          </div>
+          <div class="col-4 col-sm-6 detail-minor-background">
+            {{ address_type.location_locality }}
+          </div>
+        </div>
+   {% endif %}
+   
+    {% if address_type.location_country %}
+       <div class="row">
+          <div class="col-8 col-sm-6 detail-minor-background">
+            Country:
+          </div>
+          <div class="col-4 col-sm-6 detail-minor-background">
+            {{ address_type.location_country }}
+          </div>
+        </div>
+   {% endif %}   
+
+    {% if address_type.location_address_line_1 %}
+       <div class="row">
+          <div class="col-8 col-sm-6 detail-minor-background">
+            Address (line 1):
+          </div>
+          <div class="col-4 col-sm-6 detail-minor-background">
+            {{ address_type.location_address_line_1 }}
+          </div>
+        </div>
+    {% endif %}
+   
+    {% if address_type.location_address_line_2 %}
+       <div class="row">
+          <div class="col-8 col-sm-6 detail-minor-background">
+            Address (line 2):
+          </div>
+          <div class="col-4 col-sm-6 detail-minor-background">
+            {{ address_type.location_address_line_2 }}
+          </div>
+        </div>
+   {% endif %}
+        
+      {% if address_type.location_zipcode %}
+         <div class="row">
+            <div class="col-8 col-sm-6 detail-minor-background">
+              ZIP Code:
+            </div>
+            <div class="col-4 col-sm-6 detail-minor-background">
+              {{ address_type.location_zipcode }}
+            </div>
+          </div>
+       {% endif %}
+
+    {% else %}
+        <a href="{{ address_type.get_absolute_url }}" class="btn btn-primary btn-float-above-bottom-border">Add location information to this address</a>
+    {% endif %}
+
+  </div>
+</div>
+
+{% endblock %}

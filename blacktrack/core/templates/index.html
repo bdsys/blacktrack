@@ -1,0 +1,32 @@
+{% extends "base_generic.html" %}
+
+<!--Override "title" block in base_generic.html-->
+{% block title %}
+<title>Blacktrack App - Welcome</title>
+{% endblock %}
+
+{% block descriptor %}
+<h1 class="bottom-only-solid-border">Blacktrack - Welcome</h1>
+{% endblock %}
+
+{% block content %}
+
+  <p>Unauthenticated welcome to the site</p>
+  
+  <h3>Welcome to Blacktrack!</h3>
+  <p>This app aims to be your single source for tracking appliances and items in your house, business or where ever!</p>
+  <p>Blacktrack is in closed alpha in active development.</p>
+  <p>Email webappdev (at) bdsys [dot] com for an invite!</p>
+  
+    <div class="row">
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body card-gray-background-major">
+          <h5 href="" class="card-title">Login to see your stuff!</h5>
+          <a href="{% url 'login'%}?next={% url 'landing'%}" class="btn btn-primary">Launch</a>
+        </div>
+      </div>
+    </div>
+    </div>
+  
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends "base_generic.html" %}
+
+<!--Override "title" block in base_generic.html-->
+{% block title %}
+<title>Blacktrack App - Create Site</title>
+{% endblock %}
+
+{% block descriptor %}
+<h1 class="bottom-only-solid-border">Blacktrack - Create Site</h1>
+{% endblock %}
+
+{% block content %}
+
+  <form action="" method="post">
+    {% csrf_token %}
+
+    <table>
+      <tr>
+        <th>Site Name:</th>
+        <th>Site Address:</th>
+      </tr>
+      <tr>
+        <td>{{site_type_form.name}}</td>
+        <br>
+        <td>{{site_type_form.site_address}}</td>
+      </tr>
+    </table>
+  
+   <br>    
+   
+<br>
+<div class="form-check form-switch">
+  <input class="form-check-input" type="checkbox" name="site_type-new_address_needed" id="id_site_type-new_address_needed" onclick="ToggleHideByIdDisplay()">
+  <label class="form-check-label" for="id_site_type-new_address_needed">{{ site_type_form.new_address_needed.label }}</label>
+</div>
+<br>
+
+
+    <table style="display: none;" id="default_no_display_form" >
+      {{ address_type_form.as_table }}
+    </table>
+    <input type="submit" value="Submit">
+  </form>
+
+{% endblock %}

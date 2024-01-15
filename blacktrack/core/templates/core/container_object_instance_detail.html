@@ -1,0 +1,107 @@
+{% extends "base_generic.html" %}
+
+<!--Override "title" block in base_generic.html-->
+{% block title %}
+<title>Blacktrack App - Container Details</title>
+{% endblock %}
+
+{% block descriptor %}
+<h1 class="bottom-only-solid-border">Blacktrack - Container Details</h1>
+{% endblock %}
+
+{% block content %}
+
+<br>
+<a href="{% url 'list-containers' %}" class="btn btn-primary">See my containers</a>
+<a href="{{ container_object_instance.get_container_items_url }}" class="btn btn-primary">See items in this container</a>
+<br>
+
+<br>
+<div class="row">
+  <div class="col-sm-9 detail-major-background">
+  <h3>{{ container_object_instance.container_object_instance_nickname }}</h3>
+  
+   {% if container_object_instance.container.model %}
+       <div class="row">
+          <div class="col-8 col-sm-6 detail-minor-background">
+            Container model:
+          </div>
+          <div class="col-4 col-sm-6 detail-minor-background">
+            {{ container_object_instance.container.model }}
+          </div>
+        </div>
+   {% endif %}
+   
+  {% if container_object_instance.serial_number %}
+       <div class="row">
+          <div class="col-8 col-sm-6 detail-minor-background">
+            Serial number:
+          </div>
+          <div class="col-4 col-sm-6 detail-minor-background">
+            {{ container_object_instance.serial_number }}
+          </div>
+        </div>
+   {% endif %}
+
+
+   {% if container_object_instance.source.name %}
+       <div class="row">
+          <div class="col-8 col-sm-6 detail-minor-background">
+            Bought from:
+          </div>
+          <div class="col-4 col-sm-6 detail-minor-background">
+            {{ container_object_instance.source.name }} {% if container_object_instance.container_acquisition_date %} ( {{ container_object_instance.container_acquisition_date }} ){% endif %}
+          </div>
+        </div>
+   {% endif %}
+    
+   {% if container_object_instance.site.name %}
+       <div class="row">
+          <div class="col-8 col-sm-6 detail-minor-background">
+            Located at:
+          </div>
+          <div class="col-4 col-sm-6 detail-minor-background">
+            {{ container_object_instance.site.name }} {% if container_object_instance.location_in_site %}( {{ container_object_instance.location_in_site }} ){% endif %}
+          </div>
+        </div>
+   {% endif %}
+       <div class="row">
+          <div class="col-8 col-sm-6 detail-minor-background">
+          {% if container_object_instance.container_warranty_bool %}
+          
+            {% if container_object_instance.days_until_warranty_expiration > 30 %}
+              <strong><p class="text-success">Warranty VALID</p></strong>
+              
+            {% elif container_object_instance.days_until_warranty_expiration < 30 and container_object_instance.days_until_warranty_expiration > 0 %}
+              <strong><p class="text-warning">Warranty expires in {{ container_object_instance.days_until_warranty_expiration }} number of days</p></strong>
+              
+            {% else %}
+              <strong><p class="text-danger">Warranty is no longer valid! (Expired {% widthratio container_object_instance.days_until_warranty_expiration 1 -1 %} days ago)</p></strong>
+              
+            {% endif %}
+            
+          {% else %}
+            <p>No warranty registered to this continer.</p>
+          {% endif %}
+            
+          </div>
+          <div class="col-4 col-sm-6 detail-minor-background">
+            {% if container_object_instance.container_warranty_bool %}
+              {% if container_object_instance.days_until_warranty_expiration > 30 %}
+                Warranty exists until:  {{ container_object_instance.container_warranty_expiration_date }}
+                
+              {% else %}
+                Warranty expired on:  {{ container_object_instance.container_warranty_expiration_date }}
+              
+              {% endif %}
+                
+            {% else %}
+                No warranty
+                
+            {% endif %}
+          </div>
+        </div>
+  </div>
+</div>
+
+{% endblock %}

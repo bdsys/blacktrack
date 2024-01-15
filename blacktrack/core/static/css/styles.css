@@ -1,0 +1,53 @@
+/*Takes "<ul class="sidebar-nav">" from base_generic.html and modifies it*/
+
+.bottom-only-solid-border {
+    border-style: none none solid none;
+    padding-bottom: 10px;
+}
+
+.right-side-only-solid-border {
+    border-style: none solid none none;
+}
+
+.sidebar-nav {
+    margin-top: 20px;
+    padding: 0;
+    list-style: none;
+}
+
+.small-paragraph {
+    font-size: 14px;
+}
+
+.bottom-portion {
+    opacity: 0.60;
+    font-size: 14px;
+}
+
+.detail-major-background{
+    background-color: #b8bfba;
+    border-style: solid solid solid solid;
+    left: 10px;
+}
+
+.detail-minor-background{
+    background-color: #9d8fb8;
+    border-style: solid;
+    border-width: thin;
+}
+
+.card-gray-background-major{
+    background-color: #b8bfba;
+}
+
+.btn-float-above-bottom-border {
+    margin-bottom: 5px;
+}
+
+.btn-float-above-buttons {
+    margin-bottom: 8px;
+}
+
+.toggle-push-away-from-buttons {
+    margin-bottom: 20px;
+}

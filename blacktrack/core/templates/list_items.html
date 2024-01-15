@@ -1,0 +1,42 @@
+{% extends "base_generic.html" %}
+
+<!--Override "title" block in base_generic.html-->
+{% block title %}
+<title>Blacktrack App - My Items</title>
+{% endblock %}
+
+{% block descriptor %}
+<h1 class="bottom-only-solid-border">Blacktrack - My Items</h1>
+{% endblock %}
+
+{% block content %}
+
+  <br>
+  <h2>My items {{ item_object_instance_arr.container_instance.container_object_instance_nickname }}</h2>
+  <br>
+  <p>total items: {{ item_object_instance_arr.count }}</p>
+  <br>
+  
+  <div class="row">
+    {% for item in item_object_instance_arr %}
+      
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 href="" class="card-title">{{ item.item_object_instance_nickname }}</h5>
+          <p class="card-text text-muted">number of packages: {{ item.package_count }}</p>
+          <p class="card-text text-muted">number per package: {{ item.number_in_package_count }}</p>
+          <p class="card-text text-muted">total: {% widthratio item.package_count 1 item.number_in_package_count %}</p>
+          <a href="{{ item.get_absolute_url }}" class="btn btn-primary">See item details</a>
+           {% if perms.core.can_delete_item_object_instance %}
+            <a href="" class="btn btn-danger">Delete item</a>
+           {% endif %}
+        </div>
+      </div>
+    </div>
+    
+  {% endfor %}
+  </div>
+
+
+{% endblock %}
